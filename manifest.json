@@ -11,7 +11,7 @@
         {
             "matches": ["*://dribbble.com/*"],
             "css": ["override.css"],
-            "js": ["content.js"],
+            "js": ["main.js"],
             "run_at": "document_end"
         }
     ]
