@@ -4,6 +4,10 @@
 * Remove follower counts (on shot and profile pages)
 * Remove shot view counts (on listings, profile pages and shot pages)
 
-Focus on the work, not how popular someone is.
+**Focus on the work, not how popular someone is.**
+
+
+**TODO:**
+* Extension option to remove user names *(?)**
 
 *Feel free to contribute!*
