@@ -1,17 +1,34 @@
 const countRegex = new RegExp("[0-9]+(,[0-9]+)?")
 
-var shotListingElements = document.getElementsByClassName("dribbbles group")
-if (shotListingElements.length == 1) {
-	var shotListing = shotListingElements[0]
+var shotListingElem = document.getElementsByClassName("dribbbles group")
+if (shotListingElem.length == 1) {
+	var shotListing = shotListingElem[0]
 
-	var observer = new MutationObserver(function(mutations) {
+	var infinteScrollObserver = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
 			updatePage()
 		})
 	})
 
-	observer.observe(shotListing, {
+	infinteScrollObserver.observe(shotListing, {
 		attributes: false, 
+		childList: true, 
+		characterData: false 
+	})
+}
+
+var shotModalElem = document.getElementsByClassName("shot-overlay")
+if (shotModalElem.length == 1) {
+	var shotModal = shotModalElem[0]
+
+	var shotModalObserver = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			updatePage()
+		})
+	})
+
+	shotModalObserver.observe(shotModal, {
+		attributes: true, 
 		childList: true, 
 		characterData: false 
 	})
@@ -53,9 +70,9 @@ var updatePage = function() {
 	//Only really need to match first part of URL
 	const shotRegex = new RegExp("dribbble\.com\/shots\/[0-9]+")
 
-	var isShot = shotRegex.test(docLoc) || document.getElementsByClassName("shot-overlay")[0].style.display == ""
+	var isShot = shotRegex.test(docLoc) || document.getElementsByClassName("shot-overlay")[0].style.display != "none"
 	var isProfile = !isShot && (document.getElementsByClassName("profile-container").length != 0)
-	var isListing = (document.getElementsByClassName("dribbbles group").length == 1)
+	var isListing = document.getElementsByClassName("dribbbles group").length == 1
 
 	if (isShot) {
 		var likesContainer = document.getElementsByClassName("likes-count stats-num")[0]

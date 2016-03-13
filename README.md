@@ -6,7 +6,4 @@
 
 Focus on the work, not how popular someone is.
 
-**TODO:**
-* Call `updatePage()` when shot viewed in modal from homepage
-
 *Feel free to contribute!*
