@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "Simppple",
+    "description": "Remove follower counts, view counts and show like percentages",
+    "version": "1.0",
+    "permissions": [
+        "tabs",
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["*://dribbble.com/*"],
+            "css": ["override.css"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
