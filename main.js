@@ -1,35 +1,27 @@
 const countRegex = new RegExp("[0-9]+(,[0-9]+)?")
 
+var observer = new MutationObserver(function(mutations) {
+	mutations.forEach(function(mutation) {
+		updatePage()
+	})
+})
+
+//Infinite scrolling changes
 var shotListingElem = document.getElementsByClassName("dribbbles group")
 if (shotListingElem.length == 1) {
-	var shotListing = shotListingElem[0]
-
-	var infinteScrollObserver = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			updatePage()
-		})
-	})
-
-	infinteScrollObserver.observe(shotListing, {
+	observer.observe(shotListingElem[0], {
 		attributes: false, 
 		childList: true, 
 		characterData: false 
 	})
 }
 
+//Shot modal
 var shotModalElem = document.getElementsByClassName("shot-overlay")
 if (shotModalElem.length == 1) {
-	var shotModal = shotModalElem[0]
-
-	var shotModalObserver = new MutationObserver(function(mutations) {
-		mutations.forEach(function(mutation) {
-			updatePage()
-		})
-	})
-
-	shotModalObserver.observe(shotModal, {
+	observer.observe(shotModalElem[0], {
 		attributes: true, 
-		childList: true, 
+		childList: false, 
 		characterData: false 
 	})
 }
@@ -52,16 +44,15 @@ var updateValues = function(likesContainer, viewsContainer) {
 	views = parseValue(viewsText)
 
 	var percent = (likes/views)
-
-	var percentage
+	
 	if (!isFinite(percent)) {
-		percentage = 100
+		percent = 100
 
 	} else {
-		percentage = (percent*100).toFixed(1)
+		percent = (percent*100).toFixed(1)
 	}
 
-	likesContainer.innerHTML = likesContainer.innerHTML.replace(likesText, percentage+"%")
+	likesContainer.innerHTML = likesContainer.innerHTML.replace(likesText, percent+"%")
 }
 
 var updatePage = function() {
