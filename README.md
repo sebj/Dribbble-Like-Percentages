@@ -8,6 +8,7 @@
 
 
 **TODO:**
+* Remove follower counts from /activity page
 * Extension option to remove user names *(?)**
 
 *Feel free to contribute!*
