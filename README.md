@@ -1,6 +1,4 @@
-# Dribbble Like Percentages
-
-A very simple Chrome extension to..
+**A very simple Chrome extension to..**
 
 * Replace like count with like percentage (% = likes/views)
 * Remove follower counts (on shot and profile pages)
