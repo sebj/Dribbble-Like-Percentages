@@ -1,9 +1,11 @@
 const countRegex = new RegExp("[0-9]+(,[0-9]+)?")
 
+const shotModalClassName = "shot-overlay"
+const likesClass = "likes-count stats-num"
+const viewsClass = "views-count stats-num"
+
 var observer = new MutationObserver(function(mutations) {
-	mutations.forEach(function(mutation) {
-		updatePage()
-	})
+	updatePage()
 })
 
 //Infinite scrolling changes
@@ -17,7 +19,7 @@ if (shotListingElem.length == 1) {
 }
 
 //Shot modal
-var shotModalElem = document.getElementsByClassName("shot-overlay")
+var shotModalElem = document.getElementsByClassName(shotModalClassName)
 if (shotModalElem.length == 1) {
 	observer.observe(shotModalElem[0], {
 		attributes: true, 
@@ -61,13 +63,13 @@ var updatePage = function() {
 	//Only really need to match first part of URL
 	const shotRegex = new RegExp("dribbble\.com\/shots\/[0-9]+")
 
-	var isShot = shotRegex.test(docLoc) || document.getElementsByClassName("shot-overlay")[0].style.display != "none"
+	var isShot = shotRegex.test(docLoc) || document.getElementsByClassName(shotModalClassName)[0].style.display != "none"
 	var isProfile = !isShot && (document.getElementsByClassName("profile-container").length != 0)
 	var isListing = document.getElementsByClassName("dribbbles group").length == 1
 
 	if (isShot) {
-		var likesContainer = document.getElementsByClassName("likes-count stats-num")[0]
-		var viewsContainer = document.getElementsByClassName("views-count stats-num")[0]
+		var likesContainer = document.getElementsByClassName(likesClass)[0]
+		var viewsContainer = document.getElementsByClassName(viewsClass)[0]
 		updateValues(likesContainer, viewsContainer)
 	}
 
