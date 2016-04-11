@@ -57,8 +57,24 @@ var updateValues = function(likesContainer, viewsContainer) {
 	likesContainer.innerHTML = likesContainer.innerHTML.replace(likesText, percent+"%")
 }
 
+var hideUsernames  = function() {
+	
+}
+
 var updatePage = function() {
 	var docLoc = document.location.href
+
+	chrome.storage.sync.get({
+		removeUsernames: false
+
+	}, function(items) {
+
+		if (items.removeUsernames) {
+			document.head.insertAdjacentHTML('beforeend',
+			    '<style>.attribution { display: none !important }</style>'
+			);
+		}
+	});
 
 	//Only really need to match first part of URL
 	const shotRegex = new RegExp("dribbble\.com\/shots\/[0-9]+")
